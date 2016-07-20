@@ -1,0 +1,10 @@
+settings.py
+__pycache__/
+*.py[cod]
+*.swp
+*.db
+
+data/*
+env/
+.idea/
+cache/*
