@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Glazed & Confused</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+  <script>
+  $(document).ready(function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+
+
+  <!-- Time Picker -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+  <script>
+$(document).ready(function(){
+    $('input.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+    interval: 30,
+    minTime: '0',
+    maxTime: '11:30pm',
+    defaultTime: '9',
+    startTime: '12:00am',
+    dynamic: true,
+    dropdown: true,
+    scrollbar: true
+    });
+});
+
+  </script>
+
+  <style>
+    .container {
+      padding: 80px 120px;
+    }
+
+    .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      max-height: 500px;
+      margin: auto;
+    }
+
+    .carousel-caption h3 {
+    color: #fff !important;
+    }
+
+    @media (max-width: 600px) {
+    .carousel-caption {
+        display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+}
+  </style>
+  <!-- {% load staticfiles %} -->
+</head>
+<body>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="/home/sean/projects/donuts_env/donuts/minidonutsnyc/static/minidonutsnyc/img/donuts1.png" alt="donuts1">
+      <div class="carousel-caption">
+        <h3>New York</h3>
+        <p>The atmosphere in New York is lorem ipsum.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="/home/sean/projects/donuts_env/donuts/minidonutsnyc/static/minidonutsnyc/img/donuts2.jpg" alt="donuts2">
+      <div class="carousel-caption">
+        <h3>Chicago</h3>
+        <p>Thank you, Chicago - A night we won't forget.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="/home/sean/projects/donuts_env/donuts/minidonutsnyc/static/minidonutsnyc/img/donuts3.jpg" alt="donuts3">
+      <div class="carousel-caption">
+        <h3>LA</h3>
+        <p>Even though the traffic was a mess, we had the best time.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+<div class="container text-center">
+  <h3>Glazed & Confused</h3>
+  <p><em>We love donuts!</em></p>
+  <p>We have created a mini-donuts website. Lorem ipsum..</p>
+
+  <p class="form-group has-success has-feedback">
+    <label class="control-label">Date</label>
+    <input type="date" class="form-control form-control-success" id="inputSuccess1" placeholder="Date" />
+    <div class="form-control-feedback">THANKS!</div>
+    <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
+  </p>
+
+
+
+
+  <!-- <p>Date: <input type="text" id="datepicker"> <span class="glyphicon glyphicon-calendar"></span></p> -->
+  <p>Time: <input type="text" class="timepicker"> <span class="glyphicon glyphicon-time"></span></p>
+
+  <form id="event-rqst" method="post" class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Date</label>
+        <div class="col-xs-5">
+            <input type="text" value="" class="form-control" id="datepicker" name="date" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Time</label>
+        <div class="col-xs-5">
+            <input type="time" class="form-control" name="time" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-9 col-xs-offset-3">
+            <button type="button" id="event-rqst-btn" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+</form>
+
+
+<script>
+function validateText(id)
+{
+  var value = $("#"+id).val();
+  if(value == null || value == "")
+  {
+    var div = $("#"+id).closest("div");
+    div.addClass("has-error");
+    return false;
+  }
+  else
+  {
+    var div = $("#"+id).closest("div");
+    div.removeClass("has-error");
+    return true;
+  }
+
+}
+$(document).ready(
+
+  function()
+  {
+    $("#event-rqst-btn").click(function()
+      {
+        if(!validateText("datepicker"))
+        {
+          return false;
+        }
+        if(!validateText("time"))
+        {
+          return false;
+        }
+        $("form#event-rqst").submit();
+      });
+  }
+);
+
+</script>
+
+
+
+
+
+</div>
+
+
+<div class="container">
+  <h3 class="text-center">Contact</h3>
+  <p class="text-center"><em>We love our fans!</em></p>
+  <div class="row test">
+    <div class="col-md-4">
+      <p>Fan? Drop a note.</p>
+      <!-- <p><span class="glyphicon glyphicon-map-marker"></span>New York, NY, US</p> -->
+      <p><span class="glyphicon glyphicon-phone"></span>Phone: +1 201-951-3864</p>
+      <!-- <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p> -->
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <button class="btn pull-right" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
