@@ -13,6 +13,7 @@
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
   <script>
   $(document).ready(function() {
     $( "#datepicker" ).datepicker();
@@ -147,26 +148,94 @@ $(document).ready(function(){
 
     <div class="form-group">
         <div class="col-xs-9 col-xs-offset-3">
-            <button type="button" id="event-rqst-btn" class="btn btn-primary">Send</button>
+            <button type="submit" id="event-rqst-btn" class="btn btn-primary">Send</button>
         </div>
     </div>
 </form>
 
 
 <script>
-function validateText(id)
+(function($,W,D)
+{
+    var JQUERY4U = {};
+
+    JQUERY4U.UTIL =
+    {
+        setupFormValidation: function()
+        {
+            //form validation rules
+            $("#event-rqst").validate({
+                rules: {
+                    date: {
+                        required: true,
+                        date: true
+                    },
+                },
+                messages: {
+                    date: "Please enter a date",
+                },
+                focusInvalid: false,
+                focusCleanup: true,
+                highlight: function(date, errorClass) {
+                  $(date).fadeOut(function() {
+                  $(date).fadeIn();
+                  });
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+        }
+    }
+
+    //when the dom has loaded setup form validation rules
+    $(D).ready(function($) {
+        JQUERY4U.UTIL.setupFormValidation();
+    });
+
+})(jQuery, window, document);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+function validateData(id)
 {
   var value = $("#"+id).val();
   if(value == null || value == "")
   {
     var div = $("#"+id).closest("div");
     div.addClass("has-error");
+    var inp = $("#"+id).closest("input");
+    inp.addClass("alert");
+    inp.addClass("alert-danger");
     return false;
   }
   else
   {
     var div = $("#"+id).closest("div");
     div.removeClass("has-error");
+    var inp = $("#"+id).closest("input");
+    inp.removeClass("alert");
+    inp.removeClass("alert-danger");
     return true;
   }
 
@@ -177,7 +246,7 @@ $(document).ready(
   {
     $("#event-rqst-btn").click(function()
       {
-        if(!validateText("datepicker"))
+        if(!validateData("datepicker"))
         {
           return false;
         }
@@ -188,8 +257,9 @@ $(document).ready(
         $("form#event-rqst").submit();
       });
   }
-);
 
+);
+*/
 </script>
 
 
